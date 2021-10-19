@@ -4,6 +4,7 @@
   "description": "A server side web app to find cool cats to comment on by Danilo, Alex and Mohamed.",
   "main": "server.js",
   "scripts": {
+    "dev": "nodemon -L server.js",
     "test": "cypress open",
     "start": "node server.js"
   },
@@ -30,6 +31,10 @@
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.13",
     "prettier": "^2.4.1"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
