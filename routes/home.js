@@ -1,9 +1,9 @@
 'use strict';
 
 function get(request, response) {
-  return /*html*/ `
+  return /* html */ `
         <section>
-      <div class="centre">
+      <div>
       <a href="/signup">Sign up</a>
       </div>
       </section>
