@@ -31,8 +31,6 @@
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "install": "^0.13.0",
-    "npm": "^8.1.0",
     "prettier": "^2.4.1"
   }
 }
