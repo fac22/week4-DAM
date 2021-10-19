@@ -7,7 +7,7 @@ Server-side app by Danilo, Alex and Mohamed
 ![image](https://user-images.githubusercontent.com/76691426/137887237-b3f95c90-be9c-4511-a09f-e1057c4230ec.png)
 
 - Cypress testing
-  we most use the module.exports to have the test running on cypress.
+  we must use the module.exports to have the test running on cypress.
   image below:
 
 ```javascript
