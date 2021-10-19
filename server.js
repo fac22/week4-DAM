@@ -1,15 +1,17 @@
-'use strict';
+"use strict";
 
-const express = require('express');
+const express = require("express");
 
-const home = require('./routes/home.js');
+const home = require("./routes/home.js");
+const login = require("./routes/login.js");
 
 const server = express();
 
-const staticHandler = express.static('public');
+const staticHandler = express.static("public");
 server.use(staticHandler);
 
-server.get('/', home.get);
+server.get("/", home.get);
+server.get("/login", login.get);
 
 const PORT = 3000;
 
