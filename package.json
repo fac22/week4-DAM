@@ -1,0 +1,35 @@
+{
+  "name": "facats",
+  "version": "1.0.0",
+  "description": "A server side web app to find cool cats to comment on by Danilo, Alex and Mohamed.",
+  "main": "server.js",
+  "scripts": {
+    "test": "cypress open",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fac22/week4-DAM.git"
+  },
+  "keywords": [
+    "cats"
+  ],
+  "author": "lopezelpesado, Mohamed, danilo-cupido",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fac22/week4-DAM/issues"
+  },
+  "homepage": "https://github.com/fac22/week4-DAM#readme",
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-css-modules": "^2.11.0",
+    "eslint-plugin-html": "^6.2.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.4.1"
+  }
+}
