@@ -1,10 +1,13 @@
 'use strict';
 
 function get(request, response) {
-  const html = /* html */ `
-      <h1>Hello</h1>
-    `;
-  response.send(html);
+  return /*html*/ `
+        <section>
+      <div class="centre">
+      <a href="/signup">Sign up</a>
+      </div>
+      </section>
+      `;
 }
 
 module.exports = { get };
