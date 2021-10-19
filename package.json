@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/fac22/week4-DAM#readme",
   "devDependencies": {
+    "cypress": "^8.6.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-node": "^4.1.0",
