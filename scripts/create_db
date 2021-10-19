@@ -1,0 +1,14 @@
+#! /bin/sh
+
+# stop script when an error occurs
+set -e
+
+psql -q -c "CREATE USER facats_user SUPERUSER PASSWORD 'pass123'"
+echo "Created Postgres user 'facats_user'"
+
+psql -q -c "CREATE DATABASE facats WITH OWNER facats_user"
+echo "Created Postgres database 'facats'"
+
+DB_URL="postgres://facats_user:pass123@localhost:5432/facats"
+echo "DATABASE_URL='postgres://facats_user:pass123@localhost:5432/facats'" > .env
+echo "Created .env containing DATABASE_URL"
