@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const db = require('./connection.js');
+const db = require("./connection.js");
 
 function createUser(username, email, hash) {
   const INSERT_USER = `
@@ -36,4 +36,10 @@ function getSession(sid) {
   });
 }
 
-module.exports = { createUser, getUser, createSession, getSession };
+function createCat(userId, name, picture) {
+  const INSERT_CAT = `
+    INSERT INTO cats (user_id, name, picture) VALUES ($1, $2, $3)`;
+  return db.query(INSERT_CAT, [userId, name, picture]);
+}
+
+module.exports = { createUser, getUser, createSession, getSession, createCat };

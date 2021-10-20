@@ -1,10 +1,11 @@
-'use strict';
+"use strict";
 
 function get(request, response) {
   const user = request.session;
   if (user) {
     response.send(/* html */ `
     <h1>Hello ${user.username}!</h1>
+    <a href="/createCat" >upload your cat 🐈 </a>
     `);
   } else {
     response.send(/* html */ `
