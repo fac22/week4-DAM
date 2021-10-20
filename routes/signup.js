@@ -1,14 +1,15 @@
 'use strict';
 
 const auth = require('../auth.js');
-const { buildPage } = require('../layout.js');
+// const { buildPage } = require('../layout.js');
+// const model = require('../database/model.js');
 
 function get(request, response) {
   const title = `facats-signup`;
   const content = /* html */ `
   <h2>Create an account</h2>
   <div>
-  <form action="signup" method="POST">
+  <form action="/signup" method="POST">
   <div>
     <label for="username" >Username <span aria-hidden="true">*</span></label>
     <input type="text" id="username" name="username" maxlength="20" placeholder="Type Username" required />
@@ -20,7 +21,7 @@ function get(request, response) {
     <p id="emailError"></p>
     <div>
     <label for="password" >Password <span aria-hidden="true">*</span></label>
-    <input type="password" id="password" name="password" minlength="8" placeholder="min 8 characters" required />
+    <input type="password" id="password" name="password" minlength="1" placeholder="min 1 characters" required />
     </div>
     <p id="passwordError" class="error"></p>
     <button>Sign up</button>
@@ -28,24 +29,29 @@ function get(request, response) {
     </form>
     </div>
   `;
-  response.send(buildPage(title, content));
+  // response.send(buildPage(title, content));
+  response.send(content);
 }
 
 function post(request, response) {
   const { username, email, password } = request.body;
-  auth
-    .createUser(username, email, password)
-    .then(auth.saveUserSession)
-    .then((sid) => {
-      response.cookie('sid', sid, auth.COOKIE_OPTIONS);
-      response.redirect('/');
-    })
-    .catch((error) => {
-      console.error(error);
-      response.send(
-        buildPage(`Error`, `<h2>An error occurred! Couldn't sign up</h2>`)
-      );
-    });
+  console.log(username, email, password);
+  // auth
+  //   .createUser(username, email, password)
+  //   .then(auth.saveUserSession)
+  //   .then((sid) => {
+  //     response.cookie('sid', sid, auth.COOKIE_OPTIONS);
+  //     response.redirect('/');
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //     // response.send(
+  //     //   buildPage(`Error`, `<h2>An error occurred! Couldn't sign up</h2>`)
+  //     // );
+  //     response
+  //       .status(500)
+  //       .send(`Error`, `<h2>An error occurred! Couldn't sign up</h2>`);
+  //   });
 }
 
 module.exports = { get, post };
