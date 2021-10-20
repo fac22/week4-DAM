@@ -27,9 +27,16 @@ function createCat(userId, name, picture) {
 
 function getCats() {
   const SELECT_CATS = /* sql */ `
-  SELECT name, picture, users.username AS username, to_char(cats.created_at, 'DD Mon YYYY') AS created_at FROM cats JOIN users ON users.id = cats.user_id
+  SELECT cats.id AS id, name, picture, users.username AS username, to_char(cats.created_at, 'DD Mon YYYY') AS created_at FROM cats JOIN users ON users.id = cats.user_id
   `;
   return db.query(SELECT_CATS).then((result) => result.rows);
+}
+
+function getAvatar(catId) {
+  const SELECT_CAT_PICTURE = /* sql */ `
+  SELECT picture FROM cats WHERE id=$1
+  `;
+  return db.query(SELECT_CAT_PICTURE, [catId]).then((result) => result.rows[0]);
 }
 
 function createSession(sid, data) {
@@ -59,6 +66,7 @@ module.exports = {
   getUser,
   createCat,
   getCats,
+  getAvatar,
   createSession,
   getSession,
   deleteSession,
