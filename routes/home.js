@@ -2,12 +2,8 @@
 
 function get(request, response) {
   const html = /* html */ `
-        <section>
-      <div>
-      <a href="/signup">Sign up</a>
-      </div>
-      </section>
-      `;
+      <h1>Hello</h1>
+    `;
   response.send(html);
 }
 
