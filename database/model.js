@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-const db = require("./connection.js");
+const db = require('./connection.js');
 
 function createUser(username, email, hash) {
   const INSERT_USER = `
@@ -49,4 +49,17 @@ function getSession(sid) {
   });
 }
 
-module.exports = { createUser, getUser, createCat, getCats, createSession, getSession };
+function deleteSession(sid) {
+  const DELETE_SESSION = 'DELETE FROM sessions WHERE sid=$1';
+  return db.query(DELETE_SESSION, [sid]);
+}
+
+module.exports = {
+  createUser,
+  getUser,
+  createCat,
+  getCats,
+  createSession,
+  getSession,
+  deleteSession,
+};

@@ -19,6 +19,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 const upload = multer();
 
+const logout = require('./routes/logout.js');
+
 server.use(cookieParser(process.env.COOKIE_SECRET));
 server.use(express.urlencoded({ extended: false }));
 server.use(cookieChecker);
@@ -34,7 +36,8 @@ server.post('/signup', signup.post);
 server.get('/login', login.get);
 server.post('/login', login.post);
 
-///created cat page
+server.post('/logout', logout.post);
+
 server.get('/createCat', createCat.get);
 server.post('/createCat', upload.single('avatar'), createCat.post);
 

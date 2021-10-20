@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const model = require('../database/model.js');
 
@@ -24,7 +24,13 @@ function get(request, response) {
       )
       .then((html) =>
         response.send(/* html */ `
-    <h2>Here are all the cats we have, ${user.username}! <a href="/createCat">You can add your own here! 🐈</a></h2>
+        <div>
+              <form action="/logout" method="POST">
+                <button id="logoutBtn">Log out</button>
+              </form>  
+            </div>
+    <h2>Here are all the cats we have, ${user.username}!</h2>
+    <a href='/createCat'>You can add your own here! 🐈</a>
     <ul>
       ${html}
     </ul>
