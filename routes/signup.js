@@ -30,29 +30,7 @@ function get(request, response) {
     </div>
   `;
   response.send(buildPage(title, content));
-  // response.send(content);
 }
-
-// function post(request, response) {
-//   const { username, email, password } = request.body;
-//   console.log(username, email, password);
-//   auth
-//     .createUser(username, email, password)
-//     .then(auth.saveUserSession)
-//     .then((sid) => {
-//       response.cookie('sid', sid, auth.COOKIE_OPTIONS);
-//       response.redirect('/');
-//     })
-//     .catch((error) => {
-//       console.error(error);
-//       response.send(
-//         buildPage(`Error`, `<h2>An error occurred! Couldn't sign up</h2>`)
-//       );
-//       // response
-//       //   .status(500)
-//       //   .send(`Error`, `<h2>An error occurred! Couldn't sign up</h2>`);
-//     });
-// }
 
 function post(request, response) {
   console.log('post from signup.js running');
