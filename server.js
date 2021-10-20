@@ -3,6 +3,7 @@
 const express = require('express');
 
 const home = require('./routes/home.js');
+const login = require('./routes/login.js');
 
 const server = express();
 
@@ -19,6 +20,9 @@ const staticHandler = express.static('public');
 server.use(staticHandler);
 
 server.get('/', home.get);
+
+server.get('/login', login.get);
+server.post('/login', login.post);
 
 const PORT = process.env.PORT || 3000;
 
