@@ -24,7 +24,7 @@ function get(request, response) {
     </div>
     <p id="passwordError" class="error"></p>
     <button>Sign up</button>
-    <script src="./index.js"></script>
+    <script src="/index.js"></script>
     </form>
     </div>
   `;

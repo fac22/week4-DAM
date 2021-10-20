@@ -13,7 +13,7 @@ function buildPage(title, content) {
    </head>
    <body>
    <header><h1>FACats<h1></header>
-   <main><section><div class="main">${content}<div></section></main>
+   <main><section><div>${content}<div></section></main>
    </body>`;
 }
 
