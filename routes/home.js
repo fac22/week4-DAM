@@ -13,7 +13,9 @@ function get(request, response) {
             return /* html */ `
               <li>
                 <h3>${cat.name}</h3>
-                <img src="TBC" alt="TBC" />
+                <img src="/cats/${cat.id}/avatar" alt="Picture of ${
+              cat.name
+            }" />
                 <p>Added by ${
                   cat.username === user.username ? 'you' : cat.username
                 } on ${cat.created_at}</p>

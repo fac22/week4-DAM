@@ -32,6 +32,13 @@ function getCats() {
   return db.query(SELECT_CATS).then((result) => result.rows);
 }
 
+function getAvatar(catId) {
+  const SELECT_CAT_PICTURE = /* sql */ `
+  SELECT picture FROM cats WHERE id=$1
+  `;
+  return db.query(SELECT_CAT_PICTURE, [catId]).then((result) => result.rows[0]);
+}
+
 function createSession(sid, data) {
   const INSERT_SESSION = `
     INSERT INTO sessions (sid, data) VALUES ($1, $2)
@@ -59,6 +66,7 @@ module.exports = {
   getUser,
   createCat,
   getCats,
+  getAvatar,
   createSession,
   getSession,
   deleteSession,
