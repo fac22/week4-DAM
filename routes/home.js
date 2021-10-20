@@ -1,15 +1,38 @@
 "use strict";
 
+const model = require('../database/model.js');
+
 function get(request, response) {
   const user = request.session;
   if (user) {
-    response.send(/* html */ `
-    <h1>Hello ${user.username}!</h1>
-    <a href="/createCat" >upload your cat 🐈 </a>
-    `);
+    model
+      .getCats()
+      .then((cats) =>
+        cats
+          .map((cat) => {
+            return /* html */ `
+              <li>
+                <h3>${cat.name}</h3>
+                <img src="TBC" alt="TBC" />
+                <p>Added by ${
+                  cat.username === user.username ? 'you' : cat.username
+                } on ${cat.created_at}</p>
+              </li>
+            `;
+          })
+          .join('')
+      )
+      .then((html) =>
+        response.send(/* html */ `
+    <h2>Here are all the cats we have, ${user.username}! <a href="/createCat">You can add your own here! 🐈</a></h2>
+    <ul>
+      ${html}
+    </ul>
+    `)
+      );
   } else {
     response.send(/* html */ `
-    <h1>You shouldn't be seeing this. Not sure how you got here 🤔 You need to <a href="/login">login</a> first!</h1>
+    <h2>You shouldn't be seeing this. Not sure how you got here 🤔 You need to <a href="/login">login</a> first!</h2>
     `);
   }
 }
