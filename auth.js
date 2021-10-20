@@ -6,6 +6,10 @@ const model = require('./database/model.js');
 
 async function verifyUser(email, password) {
   const user = await model.getUser(email);
+  // THIS MUST BE REMOVED BEFORE MERGING----------------------
+  let hashedEnteredPassword = await bcrypt.hash(password, 10);
+  console.log(hashedEnteredPassword, user.password);
+  // ---------------------------------------------------------
   const match = await bcrypt.compare(password, user.password);
 
   if (!match) {
