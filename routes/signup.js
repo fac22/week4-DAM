@@ -58,7 +58,7 @@ function post(request, response) {
   console.log('post from signup.js running');
   const { username, email, password } = request.body;
   auth
-    .createUser(email, password, username)
+    .createUser(username, email, password)
     .then(() => response.redirect('/'))
     .catch((error) => console.error(error + 'CREATE USER ERROR'));
 }
