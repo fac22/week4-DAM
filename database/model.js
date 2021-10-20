@@ -21,7 +21,7 @@ function getUser(email) {
 
 function getCats() {
   const SELECT_CATS = /* sql */ `
-  SELECT name, picture, users.username AS username FROM cats JOIN users ON users.id = cats.user_id
+  SELECT name, picture, users.username AS username, to_char(cats.created_at, 'DD Mon YYYY') AS created_at FROM cats JOIN users ON users.id = cats.user_id
   `;
   return db.query(SELECT_CATS).then((result) => result.rows);
 }

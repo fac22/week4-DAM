@@ -9,15 +9,17 @@ function get(request, response) {
       .getCats()
       .then((cats) =>
         cats
-          .map(
-            (cat) => /* html */ `
-      <li>
-        <h3>${cat.name}</h3>
-        <img src="TBC" alt="TBC" />
-        <p>Added by ${cat.username}</p>
-      </li>
-      `
-          )
+          .map((cat) => {
+            return /* html */ `
+              <li>
+                <h3>${cat.name}</h3>
+                <img src="TBC" alt="TBC" />
+                <p>Added by ${
+                  cat.username === user.username ? 'you' : cat.username
+                } on ${cat.created_at}</p>
+              </li>
+            `;
+          })
           .join('')
       )
       .then((html) =>
