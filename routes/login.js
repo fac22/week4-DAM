@@ -27,7 +27,10 @@ function post(request, response) {
       response.cookie('sid', sid, auth.COOKIE_OPTIONS);
       response.redirect('/');
     })
-    .catch(() => response.send(/* html */ `<h1>User not found!</h1>`));
+    .catch((error) => {
+      console.log(error);
+      return response.send(/* html */ `<h1>User not found!</h1>`);
+    });
 }
 
 module.exports = { get, post };

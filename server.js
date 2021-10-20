@@ -17,7 +17,7 @@ dotenv.config();
 
 server.use(cookieParser(process.env.COOKIE_SECRET));
 server.use(express.urlencoded({ extended: false }));
-server.unsubscribe(cookieChecker);
+server.use(cookieChecker);
 
 const staticHandler = express.static('public');
 server.use(staticHandler);
