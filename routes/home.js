@@ -24,6 +24,11 @@ function get(request, response) {
       )
       .then((html) =>
         response.send(/* html */ `
+        <div>
+              <form action="/logout" method="POST">
+                <button id="logoutBtn">Log out</button>
+              </form>  
+            </div>
     <h2>Here are all the cats we have, ${user.username}!</h2>
     <ul>
       ${html}
