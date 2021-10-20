@@ -16,6 +16,8 @@ const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
 dotenv.config();
 
+const logout = require('./routes/logout.js');
+
 server.use(cookieParser(process.env.COOKIE_SECRET));
 server.use(express.urlencoded({ extended: false }));
 server.use(cookieChecker);
@@ -30,6 +32,8 @@ server.post('/signup', signup.post);
 
 server.get('/login', login.get);
 server.post('/login', login.post);
+
+server.post('/logout', logout.post);
 
 const PORT = process.env.PORT || 3000;
 
