@@ -21,7 +21,7 @@ function getUser(email) {
 
 function getCats() {
   const SELECT_CATS = /* sql */ `
-  SELECT name, picture, user_id FROM cats 
+  SELECT name, picture, users.username AS username FROM cats JOIN users ON users.id = cats.user_id
   `;
   return db.query(SELECT_CATS).then((result) => result.rows);
 }
@@ -43,4 +43,4 @@ function getSession(sid) {
   });
 }
 
-module.exports = { createUser, getUser, createSession, getSession };
+module.exports = { createUser, getUser, getCats, createSession, getSession };
