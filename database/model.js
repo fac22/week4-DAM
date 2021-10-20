@@ -19,6 +19,13 @@ function getUser(email) {
   return db.query(SELECT_USER, [email]).then((result) => result.rows[0]);
 }
 
+function getCats() {
+  const SELECT_CATS = /* sql */ `
+  SELECT name, picture, user_id FROM cats 
+  `;
+  return db.query(SELECT_CATS).then((result) => result.rows);
+}
+
 function createSession(sid, data) {
   const INSERT_SESSION = `
     INSERT INTO sessions (sid, data) VALUES ($1, $2)
