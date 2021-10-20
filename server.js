@@ -3,7 +3,7 @@
 const express = require('express');
 
 const home = require('./routes/home.js');
-
+const signup = require('./routes/signup.js');
 const server = express();
 
 const cookieParser = require('cookie-parser');
@@ -19,7 +19,8 @@ const staticHandler = express.static('public');
 server.use(staticHandler);
 
 server.get('/', home.get);
-
+server.get('/signup', signup.get);
+server.post('/signup', signup.post);
 const PORT = process.env.PORT || 3000;
 
 server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
