@@ -35,3 +35,9 @@ Server-side web app to find cool cats and comment on them by Danilo, Alex and Mo
 ```javascript
 module.exports = (on, config) => {};
 ```
+
+- order of arguments for functions
+  - when calling a function that inserts into the database, we need to make sure we get the order of the functions the right way round
+  - had a bug that meant we could sign up but not log in
+  - this was because the password has not being inserted into the database in the correct column
+  - this was a result of mixing up the arguments passed to the create user function
