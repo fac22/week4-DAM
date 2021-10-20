@@ -10,9 +10,21 @@ function createUser(username, email, password) {
     .then((hash) => model.createUser(username, email, hash));
 }
 
+async function verifyUser(email, password) {
+  const user = await model.getUser(email);
+  const match = await bcrypt.compare(password, user.password);
+
+  if (!match) {
+    throw new Error('Password mismatch');
+  } else {
+    delete user.password;
+    return user;
+  }
+}
+
 function saveUserSession(user) {
   const sid = crypto.randomBytes(18).toString('base64');
-  return model.createSession(sid, { user });
+  return model.createSession(sid, user);
 }
 
 const COOKIE_OPTIONS = {
@@ -22,4 +34,4 @@ const COOKIE_OPTIONS = {
   signed: true,
 };
 
-module.exports = { createUser, saveUserSession, COOKIE_OPTIONS };
+module.exports = { createUser, verifyUser, saveUserSession, COOKIE_OPTIONS };

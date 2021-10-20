@@ -35,7 +35,7 @@ CREATE TABLE comments (
 INSERT INTO users (email, password, username) VALUES
 (
   'test@gmail.com',
-  '$2a$10$TacA7NHslEzDumr04YxXmOQ9rO4GsGcSUiCA7awUBrPFtfl.grlKK',
+  '$2a$10$vwhmLeePYHh6ayoIt42wKuelQ/JaQClYWYsFjr0V25qLLBowiZ.x.',
   'testington'
 );
 

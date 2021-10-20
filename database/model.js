@@ -12,12 +12,28 @@ function createUser(username, email, hash) {
     .then((result) => result.rows[0]);
 }
 
-function createSession(sid, json) {
-  const INSERT_SESSION = ` INSERT INTO sessions (sid, data) VALUES ($1, $2)
-    RETURNING sid`;
-  return db
-    .query(INSERT_SESSION, [sid, json])
-    .then((response) => response.rows[0].sid);
+function getUser(email) {
+  const SELECT_USER = `
+      SELECT id, email, password, username FROM users WHERE email=$1
+      `;
+  return db.query(SELECT_USER, [email]).then((result) => result.rows[0]);
 }
 
-module.exports = { createUser, createSession };
+function createSession(sid, data) {
+  const INSERT_SESSION = `
+    INSERT INTO sessions (sid, data) VALUES ($1, $2)
+    RETURNING sid`;
+  return db
+    .query(INSERT_SESSION, [sid, data])
+    .then((result) => result.rows[0].sid);
+}
+
+function getSession(sid) {
+  const SELECT_SESSION = `SELECT data FROM sessions WHERE sid=$1`;
+  return db.query(SELECT_SESSION, [sid]).then((result) => {
+    const singleResult = result.rows[0];
+    return singleResult && singleResult.data;
+  });
+}
+
+module.exports = { createUser, getUser, createSession, getSession };
