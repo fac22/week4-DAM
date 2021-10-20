@@ -22,6 +22,10 @@ Server-side web app to find cool cats and comment on them by Danilo, Alex and Mo
 
 ![image](https://user-images.githubusercontent.com/76691426/137887237-b3f95c90-be9c-4511-a09f-e1057c4230ec.png)
 
+## Login flow
+
+![image](https://user-images.githubusercontent.com/76691426/138062609-1b45ed29-d389-40c2-95bc-c252a4b52d3f.png)
+
 ## Bugs and learnings
 
 - Cypress testing
