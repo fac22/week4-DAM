@@ -37,10 +37,16 @@ INSERT INTO users (email, password, username) VALUES
   'test@gmail.com',
   '$2a$10$vwhmLeePYHh6ayoIt42wKuelQ/JaQClYWYsFjr0V25qLLBowiZ.x.',
   'testington'
+), (
+  'eviltest@gmail.com',
+  '$2a$10$vwhmLeePYHh6ayoIt42wKuelQ/JaQClYWYsFjr0V25qLLBowiZ.x.',
+  'eviltestington'
 );
 
 INSERT INTO cats ( user_id, name  ) VALUES
   (1,  'Keanu'),
-  (1,  'Ms. Fluff');
+  (1,  'Ms. Fluff'),
+  (2,  'Evil Keanu'),
+  (2,  'Evil Ms. Fluff');
 
 COMMIT;

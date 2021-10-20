@@ -37,7 +37,12 @@ module.exports = (on, config) => {};
 ```
 
 - order of arguments for functions
+
   - when calling a function that inserts into the database, we need to make sure we get the order of the functions the right way round
   - had a bug that meant we could sign up but not log in
   - this was because the password has not being inserted into the database in the correct column
   - this was a result of mixing up the arguments passed to the create user function
+
+- formatting timestamps when selecting out of a db
+  - `"SELECT to_char(created_at, 'DD Mon YYYY') AS created_at FROM cats"`
+  - https://www.postgresql.org/docs/9.1/functions-formatting.html#:~:text=9.8.%20Data%20Type%20Formatting%20Functions

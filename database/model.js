@@ -19,6 +19,13 @@ function getUser(email) {
   return db.query(SELECT_USER, [email]).then((result) => result.rows[0]);
 }
 
+function getCats() {
+  const SELECT_CATS = /* sql */ `
+  SELECT name, picture, users.username AS username, to_char(cats.created_at, 'DD Mon YYYY') AS created_at FROM cats JOIN users ON users.id = cats.user_id
+  `;
+  return db.query(SELECT_CATS).then((result) => result.rows);
+}
+
 function createSession(sid, data) {
   const INSERT_SESSION = `
     INSERT INTO sessions (sid, data) VALUES ($1, $2)
@@ -36,4 +43,4 @@ function getSession(sid) {
   });
 }
 
-module.exports = { createUser, getUser, createSession, getSession };
+module.exports = { createUser, getUser, getCats, createSession, getSession };
