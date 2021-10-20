@@ -30,6 +30,7 @@ function get(request, response) {
               </form>  
             </div>
     <h2>Here are all the cats we have, ${user.username}!</h2>
+    <a href='/createCat'>You can add your own here! 🐈</a>
     <ul>
       ${html}
     </ul>

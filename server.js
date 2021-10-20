@@ -1,10 +1,12 @@
 'use strict';
 
 const express = require('express');
+const multer = require('multer');
 
 const home = require('./routes/home.js');
 const signup = require('./routes/signup.js');
 const login = require('./routes/login.js');
+const createCat = require('./routes/createCat.js');
 
 const cookieChecker = require('./middleware/cookieChecker.js');
 const checkAuth = require('./middleware/checkAuth.js');
@@ -15,6 +17,7 @@ const cookieParser = require('cookie-parser');
 
 const dotenv = require('dotenv');
 dotenv.config();
+const upload = multer();
 
 const logout = require('./routes/logout.js');
 
@@ -34,6 +37,9 @@ server.get('/login', login.get);
 server.post('/login', login.post);
 
 server.post('/logout', logout.post);
+
+server.get('/createCat', createCat.get);
+server.post('/createCat', upload.single('avatar'), createCat.post);
 
 const PORT = process.env.PORT || 3000;
 

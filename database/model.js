@@ -19,6 +19,12 @@ function getUser(email) {
   return db.query(SELECT_USER, [email]).then((result) => result.rows[0]);
 }
 
+function createCat(userId, name, picture) {
+  const INSERT_CAT = `
+    INSERT INTO cats (user_id, name, picture) VALUES ($1, $2, $3)`;
+  return db.query(INSERT_CAT, [userId, name, picture]);
+}
+
 function getCats() {
   const SELECT_CATS = /* sql */ `
   SELECT name, picture, users.username AS username, to_char(cats.created_at, 'DD Mon YYYY') AS created_at FROM cats JOIN users ON users.id = cats.user_id
@@ -51,6 +57,7 @@ function deleteSession(sid) {
 module.exports = {
   createUser,
   getUser,
+  createCat,
   getCats,
   createSession,
   getSession,
