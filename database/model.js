@@ -2,6 +2,16 @@
 
 const db = require('./connection.js');
 
+function createUser(username, email, hash) {
+  const INSERT_USER = `
+  INSERT INTO users (username, email, password) VALUES ($1, $2, $3)
+  RETURNING id, email, username
+  `;
+  return db
+    .query(INSERT_USER, [username, email, hash])
+    .then((result) => result.rows[0]);
+}
+
 function getUser(email) {
   const SELECT_USER = `
       SELECT id, email, password, username FROM users WHERE email=$1
@@ -26,4 +36,4 @@ function getSession(sid) {
   });
 }
 
-module.exports = { getUser, createSession, getSession };
+module.exports = { createUser, getUser, createSession, getSession };

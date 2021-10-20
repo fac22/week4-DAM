@@ -4,6 +4,12 @@ const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 const model = require('./database/model.js');
 
+function createUser(username, email, password) {
+  return bcrypt
+    .hash(password, 10)
+    .then((hash) => model.createUser(username, email, hash));
+}
+
 async function verifyUser(email, password) {
   const user = await model.getUser(email);
   const match = await bcrypt.compare(password, user.password);
@@ -28,4 +34,4 @@ const COOKIE_OPTIONS = {
   signed: true,
 };
 
-module.exports = { verifyUser, saveUserSession, COOKIE_OPTIONS };
+module.exports = { createUser, verifyUser, saveUserSession, COOKIE_OPTIONS };

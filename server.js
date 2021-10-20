@@ -3,6 +3,7 @@
 const express = require('express');
 
 const home = require('./routes/home.js');
+const signup = require('./routes/signup.js');
 const login = require('./routes/login.js');
 
 const cookieChecker = require('./middleware/cookieChecker.js');
@@ -23,6 +24,9 @@ const staticHandler = express.static('public');
 server.use(staticHandler);
 
 server.get('/', checkAuth, home.get);
+
+server.get('/signup', signup.get);
+server.post('/signup', signup.post);
 
 server.get('/login', login.get);
 server.post('/login', login.post);
