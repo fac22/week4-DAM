@@ -9,4 +9,21 @@ function getUser(email) {
   return db.query(SELECT_USER, [email]).then((result) => result.rows[0]);
 }
 
-module.exports = { getUser };
+function createSession(sid, data) {
+  const INSERT_SESSION = `
+    INSERT INTO sessions (sid, data) VALUES ($1, $2)
+    RETURNING sid`;
+  return db
+    .query(INSERT_SESSION, [sid, data])
+    .then((result) => result.rows[0].sid);
+}
+
+function getSession(sid) {
+  const SELECT_SESSION = `SELECT data FROM sessions WHERE sid=$1`;
+  return db.query(SELECT_SESSION, [sid]).then((result) => {
+    const singleResult = result.rows[0];
+    return singleResult && singleResult.data;
+  });
+}
+
+module.exports = { getUser, createSession, getSession };
