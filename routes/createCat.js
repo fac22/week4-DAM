@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-const model = require("../database/model.js");
+const model = require('../database/model.js');
 
 function get(request, response) {
   const html = /* html */ `
@@ -23,14 +23,14 @@ function get(request, response) {
 
 function post(request, response) {
   const user = request.session;
-  console.log("i am on the create Cat page 🐈 ");
+  console.log('i am on the create Cat page 🐈 ');
   const file = request.file;
   const { catName } = request.body;
 
   console.log(file);
-  model.createCat(user.id, catName, file.buffer);
-
-  response.redirect("/");
+  model
+    .createCat(user.id, catName, file.buffer)
+    .then(() => response.redirect('/'));
 }
 
 module.exports = { get, post };
