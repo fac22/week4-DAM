@@ -14,6 +14,12 @@ function get(request, response) {
           cat.username === user.username ? 'you' : cat.username
         } on ${cat.created_at}</p>
         <h3>Comments</h3>
+        <form action="/comment/${request.params.id}" method="POST">
+          <h4>Write a comment:</h4>
+          <label for="comment">Comment: </label>
+          <textarea name="comment" id="comment"></textarea>
+          <button type="submit">Post comment!</button>
+        </form>
       `
     )
     .then((catHtml) =>

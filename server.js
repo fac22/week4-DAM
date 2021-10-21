@@ -47,6 +47,8 @@ server.get('/cats/:id/avatar', checkAuth, catPics.get);
 
 server.get('/cats/:id', checkAuth, catPage.get);
 
+server.post('/cats/:id', checkAuth, catPage.post);
+
 const PORT = process.env.PORT || 3000;
 
 server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
