@@ -48,4 +48,25 @@ INSERT INTO cats ( user_id, name  ) VALUES
   (2,  'Evil Keanu'),
   (2,  'Evil Ms. Fluff');
 
+  INSERT INTO comments (user_id, cat_id, text_content) VALUES
+(
+  1,
+  1,
+  'testington comments on Keanu'
+), (
+  1,
+  3,
+  'testington comments on Evil Keanu'
+),
+(
+  2,
+  1,
+  'eviltestington comments on Keanu'
+),
+(
+  2,
+  4,
+  'testington comments on Evil Ms. Fluff'
+);
+
 COMMIT;
