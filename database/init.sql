@@ -66,7 +66,7 @@ INSERT INTO cats ( user_id, name  ) VALUES
 (
   2,
   4,
-  'testington comments on Evil Ms. Fluff'
+  'eviltestington comments on Evil Ms. Fluff'
 );
 
 COMMIT;
