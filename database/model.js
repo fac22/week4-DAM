@@ -49,11 +49,11 @@ function getCat(catId) {
 }
 /* we created get user cats on branch createUserprofile */
 
-function getUserCats() {
+function getUserCats(userId) {
   const SELECT_USER_CATS = /* sql */ `
-  SELECT name, picture, to_char(cats.created_at, 'DD Mon YYYY') AS created_at FROM cats JOIN users ON users.id = cats.user_id
+  SELECT cats.id AS id, users.id AS user_id, name, picture, users.username AS username, to_char(cats.created_at, 'DD Mon YYYY') AS created_at FROM cats JOIN users ON users.id = cats.user_id WHERE users.id=$1
   `;
-  return db.query(SELECT_USER_CATS).then((result) => result.rows);
+  return db.query(SELECT_USER_CATS, [userId]).then((result) => result.rows);
 }
 
 function getAvatar(catId) {
