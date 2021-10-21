@@ -17,10 +17,9 @@ function get(request, response) {
                   <img src="/cats/${cat.id}/avatar" alt="Picture of ${
               cat.name
             }" />
-                </a>
-                <p>Added by ${
-                  cat.username === user.username ? 'you' : cat.username
-                } on ${cat.created_at}</p>
+                <p>Added by <a href='/user/${cat.user_id}/profile'>${
+              cat.username === user.username ? 'you' : cat.username
+            }</a> on ${cat.created_at}</p>
               </li>
             `;
           })
@@ -35,6 +34,8 @@ function get(request, response) {
             </div>
     <h2>Here are all the cats we have, ${user.username}!</h2>
     <a href='/createCat'>You can add your own here! 🐈</a>
+    <a href='/user/${user.id}/profile'>Visit your profile</a>
+
     <ul>
       ${html}
     </ul>

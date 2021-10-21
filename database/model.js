@@ -27,7 +27,7 @@ function createCat(userId, name, picture) {
 
 function getCats() {
   const SELECT_CATS = /* sql */ `
-  SELECT cats.id AS id, name, picture, users.username AS username, to_char(cats.created_at, 'DD Mon YYYY') AS created_at FROM cats JOIN users ON users.id = cats.user_id
+  SELECT cats.id AS id, users.id AS user_id, name, picture, users.username AS username, to_char(cats.created_at, 'DD Mon YYYY') AS created_at FROM cats JOIN users ON users.id = cats.user_id
   `;
   return db.query(SELECT_CATS).then((result) => result.rows);
 }
@@ -37,6 +37,13 @@ function getCat(catId) {
   SELECT cats.id AS id, users.id AS user_id, name, picture, users.username AS username, to_char(cats.created_at, 'DD Mon YYYY') AS created_at FROM cats JOIN users ON users.id = cats.user_id WHERE cats.id = $1
   `;
   return db.query(SELECT_CAT, [catId]).then((result) => result.rows[0]);
+}
+
+function getUserCats(userId) {
+  const SELECT_USER_CATS = /* sql */ `
+  SELECT cats.id AS id, users.id AS user_id, name, picture, users.username AS username, to_char(cats.created_at, 'DD Mon YYYY') AS created_at FROM cats JOIN users ON users.id = cats.user_id WHERE users.id=$1
+  `;
+  return db.query(SELECT_USER_CATS, [userId]).then((result) => result.rows);
 }
 
 function getAvatar(catId) {
@@ -88,6 +95,7 @@ module.exports = {
   createCat,
   getCats,
   getCat,
+  getUserCats,
   getAvatar,
   createComment,
   getComments,
