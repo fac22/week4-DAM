@@ -47,7 +47,6 @@ function getCat(catId) {
   `;
   return db.query(SELECT_CAT, [catId]).then((result) => result.rows[0]);
 }
-/* we created get user cats on branch createUserprofile */
 
 function getUserCats(userId) {
   const SELECT_USER_CATS = /* sql */ `
