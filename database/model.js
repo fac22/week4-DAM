@@ -19,15 +19,6 @@ function getUser(email) {
   return db.query(SELECT_USER, [email]).then((result) => result.rows[0]);
 }
 
-function getProfile(userId) {
-  const SELECT_USER_PROFILE = /* sql */ `
-  SELECT id FROM users WHERE id=$1
-  `;
-  return db
-    .query(SELECT_USER_PROFILE, [userId])
-    .then((result) => result.rows[0]);
-}
-
 function createCat(userId, name, picture) {
   const INSERT_CAT = `
     INSERT INTO cats (user_id, name, picture) VALUES ($1, $2, $3)`;
@@ -101,7 +92,6 @@ function deleteSession(sid) {
 module.exports = {
   createUser,
   getUser,
-  getProfile,
   createCat,
   getCats,
   getCat,
