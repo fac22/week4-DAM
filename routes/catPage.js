@@ -4,8 +4,9 @@ const model = require('../database/model.js');
 
 function get(request, response) {
   const user = request.session;
+  const catId = request.params.id;
   model
-    .getCat(request.params.id)
+    .getCat(catId)
     .then(
       (cat) => /* html */ `
         <h2>${cat.name}</h2>
@@ -14,7 +15,7 @@ function get(request, response) {
           cat.username === user.username ? 'you' : cat.username
         } on ${cat.created_at}</p>
         <h3>Comments</h3>
-        <form action="/comment/${request.params.id}" method="POST">
+        <form action="/cats/${catId}" method="POST">
           <h4>Write a comment:</h4>
           <label for="comment">Comment: </label>
           <textarea name="comment" id="comment"></textarea>
@@ -24,7 +25,7 @@ function get(request, response) {
     )
     .then((catHtml) =>
       model
-        .getComments(request.params.id)
+        .getComments(catId)
         .then((comments) => {
           if (comments.length) {
             return comments
@@ -49,4 +50,17 @@ function get(request, response) {
     });
 }
 
-module.exports = { get };
+function post(request, response) {
+  const catId = request.params.id;
+  const user = request.session;
+  const comment = request.body.comment;
+  model
+    .createComment(catId, user.id, comment)
+    .then(() => response.redirect(`/cats/${catId}`))
+    .catch((error) => {
+      console.log(error);
+      response.send('error posting comment');
+    });
+}
+
+module.exports = { get, post };
