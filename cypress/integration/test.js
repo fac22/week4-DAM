@@ -1,19 +1,23 @@
 'use strict';
 
-// beforeEach(() => {
-//   cy.task('resetDb');
-// });
+beforeEach(() => {
+  cy.task('resetDb');
+});
 
-// describe('home page', () => {
-//   it('displays Sign up and Log in', () => {
-//     cy.visit('/');
-//     cy.contains('Sign up');
-//     cy.contains('Log in');
-//   });
-// });
-
-describe('home page', () => {
+describe('login', () => {
   it('displays Sign up and Log in', () => {
-    cy.visit('www.google.com');
+    cy.visit('http://localhost:3000/');
+    cy.get('form').find('#email').click().type('test@gmail.com');
+  });
+});
+
+describe('Sign up', () => {
+  it('displays Sign up and Log in', () => {
+    cy.visit('http://localhost:3000/');
+    cy.url().should('include', '/login');
+    cy.contains('Sign up').click();
+
+    cy.get('form').find('#email').click().type('hey');
+    cy.get('form').find('#password').click().type('hey');
   });
 });
