@@ -2,6 +2,12 @@
 
 Server-side web app to find cool cats and comment on them by Danilo, Alex and Mohamed.
 
+### How to install
+- Download the starter files and `cd` in
+- Run `npm install` to install all the dependencies
+- Run `npm run dev` to start the development server
+- Visit http://localhost:3000 to see the workshop app. You can “sign up” by entering an email and a password, which will be saved as a cookie so the server can identify you.
+
 ## User Stories
 
 - [ ] As a person interested in cats, I want to be able to create an account so that I can access the site
