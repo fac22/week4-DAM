@@ -33,6 +33,8 @@ function get(request, response) {
             </div>
     <h2>Here are all the cats we have, ${user.username}!</h2>
     <a href='/createCat'>You can add your own here! 🐈</a>
+    <a href='/user/${user.id}/profile'>Visit your profile</a>
+
     <ul>
       ${html}
     </ul>
