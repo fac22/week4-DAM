@@ -9,6 +9,7 @@ const login = require('./routes/login.js');
 const createCat = require('./routes/createCat.js');
 const catPics = require('./routes/catPics.js');
 const userProfile = require('./routes/userProfile.js');
+const catPage = require('./routes/catPage.js');
 
 const cookieChecker = require('./middleware/cookieChecker.js');
 const checkAuth = require('./middleware/checkAuth.js');
@@ -43,8 +44,10 @@ server.post('/logout', logout.post);
 server.get('/createCat', createCat.get);
 server.post('/createCat', upload.single('avatar'), createCat.post);
 
-server.get('/cats/:id/avatar', catPics.get);
 server.get('/user/:id/profile', checkAuth, userProfile.get);
+server.get('/cats/:id/avatar', checkAuth, catPics.get);
+
+server.get('/cats/:id', checkAuth, catPage.get);
 
 const PORT = process.env.PORT || 3000;
 

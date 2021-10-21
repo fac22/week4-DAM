@@ -12,8 +12,9 @@ function get(request, response) {
           .map((cat) => {
             return /* html */ `
               <li>
-                <h3>${cat.name}</h3>
-                <img src="/cats/${cat.id}/avatar" alt="Picture of ${
+                <h3><a href="/cats/${cat.id}">${cat.name}</a></h3>
+                <a href="/cats/${cat.id}">
+                  <img src="/cats/${cat.id}/avatar" alt="Picture of ${
               cat.name
             }" />
                 <p>Added by <a href='/user/${cat.user_id}/profile'>${
