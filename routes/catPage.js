@@ -11,7 +11,7 @@ function get(req, res) {
       console.log(user);
       res.send(/* html */ `
         <h2>${cat.name}</h2>
-        <img src="/cats/${cat.cat_id}/avatar" alt="Picture of ${cat.name}" />
+        <img src="/cats/${cat.id}/avatar" alt="Picture of ${cat.name}" />
         <p>Added by ${
           cat.username === user.username ? 'you' : cat.username
         } on ${cat.created_at}</p>

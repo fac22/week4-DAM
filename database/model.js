@@ -34,7 +34,7 @@ function getCats() {
 
 function getCat(catId) {
   const SELECT_CAT = /* sql */ `
-  SELECT cats.id AS cat_id, users.id AS user_id, name, picture, users.username AS username, to_char(cats.created_at, 'DD Mon YYYY') AS created_at FROM cats JOIN users ON users.id = cats.user_id WHERE cats.id = $1
+  SELECT cats.id AS id, users.id AS user_id, name, picture, users.username AS username, to_char(cats.created_at, 'DD Mon YYYY') AS created_at FROM cats JOIN users ON users.id = cats.user_id WHERE cats.id = $1
   `;
   return db.query(SELECT_CAT, [catId]).then((result) => result.rows[0]);
 }
