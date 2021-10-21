@@ -46,3 +46,6 @@ module.exports = (on, config) => {};
 - formatting timestamps when selecting out of a db
   - `"SELECT to_char(created_at, 'DD Mon YYYY') AS created_at FROM cats"`
   - https://www.postgresql.org/docs/9.1/functions-formatting.html#:~:text=9.8.%20Data%20Type%20Formatting%20Functions
+
+- when deploying to heroku, if your server requires a module, you have to have it as a dependency and not just a dev dependency
+  - if you don't, your server will fail to start
