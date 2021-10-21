@@ -44,7 +44,7 @@ server.get('/createCat', createCat.get);
 server.post('/createCat', upload.single('avatar'), createCat.post);
 
 server.get('/cats/:id/avatar', catPics.get);
-server.get('/user/:id/profile', userProfile.get);
+server.get('/user/:id/profile', checkAuth, userProfile.get);
 
 const PORT = process.env.PORT || 3000;
 
