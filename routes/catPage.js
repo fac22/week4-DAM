@@ -2,10 +2,10 @@
 
 const model = require('../database/model.js');
 
-function get(req, res) {
-  const user = req.session;
+function get(request, response) {
+  const user = request.session;
   model
-    .getCat(req.params.id)
+    .getCat(request.params.id)
     .then(
       (cat) => /* html */ `
         <h2>${cat.name}</h2>
@@ -18,21 +18,29 @@ function get(req, res) {
     )
     .then((catHtml) =>
       model
-        .getComments(req.params.id)
-        .then((comments) =>
-          comments.map(
-            (comment) => /* html */ `
+        .getComments(request.params.id)
+        .then((comments) => {
+          if (comments.length) {
+            return comments
+              .map(
+                (comment) => /* html */ `
     <p>${comment.text_content}</p>
     <p>Written by ${
       comment.username === user.username ? 'you' : comment.username
     } on ${comment.created_at}</p>
     `
-          )
-        )
-        .then((commentHtml) => commentHtml + catHtml)
+              )
+              .join('');
+          }
+          return /* html */ `No comments!`;
+        })
+        .then((commentHtml) => catHtml + commentHtml)
     )
-    .then(res.send)
-    .catch(() => res.send('Error getting cat'));
+    .then((html) => response.send(html))
+    .catch((error) => {
+      console.log(error);
+      response.send('Error getting cat');
+    });
 }
 
 module.exports = { get };
