@@ -8,6 +8,9 @@ describe('login', () => {
   it('displays Sign up and Log in', () => {
     cy.visit('http://localhost:3000/');
     cy.get('form').find('#email').click().type('test@gmail.com');
+    cy.get('form').find('#password').click().type('test1234');
+    cy.get('form').contains('Login').click();
+    cy.url().should('include', '/');
   });
 });
 
@@ -19,5 +22,6 @@ describe('Sign up', () => {
 
     cy.get('form').find('#email').click().type('hey');
     cy.get('form').find('#password').click().type('hey');
+    cy.contains('Sign up').click();
   });
 });
