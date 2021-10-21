@@ -63,6 +63,20 @@ function getAvatar(catId) {
   return db.query(SELECT_CAT_PICTURE, [catId]).then((result) => result.rows[0]);
 }
 
+function createComment(catId, userId, comment) {
+  const INSERT_COMMENT = /* sql */ `
+  INSERT INTO comments (cat_id, user_id, text_content) VALUES ($1, $2, $3)
+  `;
+  return db.query(INSERT_COMMENT, [catId, userId, comment]);
+}
+
+function getComments(catId) {
+  const SELECT_COMMENTS = /* sql */ `
+  SELECT comments.id AS id, comments.user_id AS user_id, users.username AS username, comments.text_content AS text_content, to_char(comments.created_at, 'DD Mon YYYY') AS created_at FROM comments JOIN users ON comments.user_id = users.id WHERE comments.cat_id = $1
+  `;
+  return db.query(SELECT_COMMENTS, [catId]).then((result) => result.rows);
+}
+
 function createSession(sid, data) {
   const INSERT_SESSION = `
     INSERT INTO sessions (sid, data) VALUES ($1, $2)
@@ -94,6 +108,8 @@ module.exports = {
   getCat,
   getUserCats,
   getAvatar,
+  createComment,
+  getComments,
   createSession,
   getSession,
   deleteSession,
