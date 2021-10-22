@@ -14,7 +14,9 @@ async function verifyUser(email, password) {
   const user = await model.getUser(email);
   const match = await bcrypt.compare(password, user.password);
 
-  if (!match) {
+  if (!email || !password) {
+    throw new Error('Please insert an email and a password');
+  } else if (!match) {
     throw new Error('Password mismatch');
   } else {
     delete user.password;

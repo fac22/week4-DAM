@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-const auth = require("../auth.js");
+const auth = require('../auth.js');
 
 function get(request, response) {
   const html = /* html */ `
@@ -25,12 +25,12 @@ function post(request, response) {
     .verifyUser(email, password)
     .then(auth.saveUserSession)
     .then((sid) => {
-      response.cookie("sid", sid, auth.COOKIE_OPTIONS);
-      response.redirect("/");
+      response.cookie('sid', sid, auth.COOKIE_OPTIONS);
+      response.redirect('/');
     })
     .catch((error) => {
       console.log(error);
-      return response.send(/* html */ `<h1>User not found!</h1>`);
+      return response.send(buildPage(error, /* html */ `<h1>${error}</h1>`));
     });
 }
 
