@@ -37,6 +37,11 @@ function post(request, response) {
   const { username, email, password } = request.body;
   auth
     .createUser(username, email, password)
+    .then(auth.saveUserSession)
+    .then((sid) => {
+      response.cookie('sid', sid, auth.COOKIE_OPTIONS);
+      response.redirect('/');
+    })
     .then(() => response.redirect('/'))
     .catch((error) => console.error(error + 'CREATE USER ERROR'));
 }
