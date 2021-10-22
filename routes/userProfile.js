@@ -36,7 +36,7 @@ function get(req, res) {
     .then((catHtml) =>
       res.send(/* html */ `
       ${greeting}
-      ${catHtml}
+     <ul> ${catHtml} </ul>
   `)
     );
 }
