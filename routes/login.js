@@ -1,6 +1,7 @@
 'use strict';
 
 const auth = require('../auth.js');
+const buildPage = require('../layout.js');
 
 function get(request, response) {
   const html = /* html */ `
