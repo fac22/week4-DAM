@@ -38,7 +38,11 @@ function get(req, res) {
       ${greeting}
      <ul> ${catHtml} </ul>
   `)
-    );
+    )
+    .catch((error) => {
+      console.error(error);
+      res.status(404).send('profile not found 😢');
+    });
 }
 
 module.exports = { get };
